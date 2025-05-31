@@ -1,0 +1,4 @@
+export * from "@/icons/linkedinIcon"
+export * from "@/icons/githubIcon"
+export * from "@/icons/ServiceIcon"
+export * from "@/icons/ResponsibilityIcon"
