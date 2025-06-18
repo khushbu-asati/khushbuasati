@@ -1,23 +1,6 @@
 "use client";
 import { useEffect, useState, FC } from "react";
-
-const sentences = [
-  "> REACT/TS",
-  "> MODERN FE",
-  "> BUILD IT",
-  "> TOP CODE",
-  "> CODE //",
-  "> FRONT END",
-  "> UI EXPERT",
-  "> NEXT.JS",
-  "> JS NINJA",
-  "> WEB DEV",
-  "> SCALABLE",
-  "> PERFORM!",
-  "> A11Y PRO",
-  "> TESTED OK",
-  "> FUTURE-FE",
-];
+import {typewriterStack }  from "@/constant/LandingPage";
 
 type Phase = "typing" | "pausing" | "deleting";
 
@@ -27,7 +10,7 @@ const Typewriter: FC = () => {
   const [charIndex, setCharIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
 
-  const currentSentence = sentences[sentenceIndex];
+  const currentSentence = typewriterStack[sentenceIndex];
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -54,7 +37,7 @@ const Typewriter: FC = () => {
       } else {
         // go to next sentence
         timeout = setTimeout(() => {
-          setSentenceIndex((prev) => (prev + 1) % sentences.length);
+          setSentenceIndex((prev) => (prev + 1) % typewriterStack.length);
           setPhase("typing");
         }, 200);
       }
@@ -66,7 +49,7 @@ const Typewriter: FC = () => {
   return (
     <div className="w-[150px] h-[80px] border-[1px] bg-[#1a1a1a] rounded relative">
       <div className="absolute top-0 left-0 right-0 height-[150px] bg-[#333] text-white rounded-t-[4px] p-1 flex justify-between items-center">
-        <span className="text-[12px]">Status</span>
+        <span className="text-[12px]">Stack</span>
         <div className="gap-2 flex">
           <div className="bg-red rounded size-[9px]" />{" "}
           <div className="bg-yellow rounded size-[9px]" />

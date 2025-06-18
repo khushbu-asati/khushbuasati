@@ -1,36 +1,87 @@
-import SectionTitle from "@/components/SharedComponents/SectionTitle";
-import CommonButtons from "@/components/SharedComponents/CommonButtons";
 import { ServiceIcon } from "@/icons";
-import { ServicesGroup } from "@/constant/Services";
+import { SERVICE_LIST } from "@/constant/Services";
 import Image from "next/image";
-import { Routes } from "@/constant/Routes";
+import { ROUTES } from "@/constant/Routes";
+import dynamic from "next/dynamic";
+import {
+  Network,
+  ShieldCheck,
+  ChartNoAxesCombined,
+  MonitorSmartphone,
+  Webhook,
+  Handshake,
+} from "lucide-react";
+
+const CommonButtons = dynamic(
+  () => import("@/components/SharedComponents/CommonButtons")
+);
+const SectionTitle = dynamic(
+  () => import("@/components/SharedComponents/SectionTitle")
+);
+const LazyLoadOnScroll = dynamic(
+  () => import("@/components/SharedComponents/LazyLoadOnScroll")
+);
+
+type Service = {
+  title: string;
+  description: string;
+  image?: string;
+  icon: React.ReactNode;
+};
+
+const ServicesGroup = [
+  [
+    { ...SERVICE_LIST[0], icon: <Network className="w-6 h-6" /> },
+    { ...SERVICE_LIST[1], icon: <ChartNoAxesCombined className="w-6 h-6" /> },
+  ],
+  [
+    { ...SERVICE_LIST[2], icon: <ShieldCheck className="w-6 h-6" /> },
+    { ...SERVICE_LIST[3], icon: <MonitorSmartphone className="w-6 h-6" /> },
+  ],
+  [
+    { ...SERVICE_LIST[4], icon: <Webhook className="w-6 h-6" /> },
+    { ...SERVICE_LIST[5], icon: <Handshake className="w-6 h-6" /> },
+  ],
+];
 
 export default function Services() {
   return (
-    <section id={Routes.services} className="w-full flex flex-col items-center rounded-[70px] bg-section-background px-4 py-[100px] sm:px-10">
-      <div className="flex flex-col items-center max-w-[1200px] gap-11">
-        <SectionTitle
-          name="Services"
-          Icon={<ServiceIcon />}
-          title="Building Future-Ready Frontend Solutions"
-          description="Architecting scalable, performant, and accessible web applications with modern frameworks."
-        />
-        <div>
-          {ServicesGroup.map((group, index) => (
-            <div key={index} className="flex w-full gap-6 flex-col lg:flex-row">
-              {group.map((service, index) => (
-                <ServiceCard key={index} service={service} index={index} />
-              ))}
-            </div>
-          ))}
+    <LazyLoadOnScroll>
+      <section
+        id={ROUTES.services}
+        className="w-full flex flex-col items-center rounded-[70px] bg-section-background px-4 py-[100px] sm:px-10"
+      >
+        <div className="flex flex-col items-center max-w-[1200px] gap-11">
+          <SectionTitle
+            name="Services"
+            Icon={<ServiceIcon />}
+            title="Building Future-Ready Frontend Solutions"
+            description="Architecting scalable, performant, and accessible web applications with modern frameworks."
+          />
+          <div>
+            {ServicesGroup.map((group, p_index) => (
+              <div
+                key={p_index}
+                className="flex w-full gap-6 flex-col lg:flex-row"
+              >
+                {group.map((service, index) => (
+                  <ServiceCard
+                    key={index}
+                    service={service}
+                    index={p_index + index}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+          <CommonButtons />
         </div>
-        <CommonButtons />
-      </div>
-    </section>
+      </section>
+    </LazyLoadOnScroll>
   );
 }
 
-function ServiceCard({ service, index }: { service: any; index: number }) {
+function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
     <div
       key={index}
@@ -50,12 +101,12 @@ function ServiceCard({ service, index }: { service: any; index: number }) {
           alt={service.title}
           width={336}
           height={220}
-          className="w-full sm:w-[336px] h-[220px] rounded-[20px] shadow-md"
+          className="w-full sm:w-[336px] h-[220px]"
         />
       )}
       <div>
         <div className="flex items-center justify-center w-12 h-12 bg-primary text-white rounded-full mb-4">
-          <service.icon className="w-6 h-6" aria-label={service.title} />
+          {service.icon}
         </div>
         <div className="flex flex-col gap-4">
           <h3 className="text-[20px] font-semibold text-text-primary">

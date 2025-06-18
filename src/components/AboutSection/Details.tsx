@@ -1,7 +1,8 @@
-import React from "react";
-import IntroSection from "./IntroSection";
-import TechnicalExpertise from "./TechnicalExpertise";
-import DashedBorder from "../SharedComponents/DashedBorder";
+import dynamic from "next/dynamic";
+const IntroSection = dynamic(() => import("@/components/AboutSection/IntroSection"));
+const TechnicalExpertise = dynamic(() => import("@/components/AboutSection/TechnicalExpertise"));
+const DashedBorder = dynamic(() => import("@/components/SharedComponents/DashedBorder"));
+
 
 export default function Details() {
   return (

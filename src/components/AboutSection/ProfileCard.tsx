@@ -1,8 +1,14 @@
 import Image from "next/image";
-import Available from "../SharedComponents/Available";
-import { SocialNetworkList } from "@/constant/SocialNetword";
+import { SOCIAL_LINKS } from "@/constant/SocialNetwork";
 import Link from "next/link";
-import ContactMe from "@/components/SharedComponents/ContactMe";
+
+import dynamic from "next/dynamic";
+const Available = dynamic(
+  () => import("@/components/SharedComponents/Available")
+);
+const ContactMe = dynamic(
+  () => import("@/components/SharedComponents/ContactMe")
+);
 
 export default function ProfileCard() {
   return (
@@ -14,11 +20,11 @@ export default function ProfileCard() {
       }}
     >
       <Image
-        src="/assets/SPA_DEVELOPEMENT.webp"
+        src="/assets/Profile.jpg"
         alt=""
         width={336}
-        height={220}
-        className="w-full sm:w-[336px] h-[220px] rounded-[14px] shadow-md mb-3"
+        height={350}
+        className="w-full md:h-[350px] lg:h-[350px] rounded-[14px] shadow-md mb-3 object-cover object-center"
       />
       <Available />
       <h1 className="text-3xl mt-3 ">Khushbu Asati</h1>
@@ -28,18 +34,18 @@ export default function ProfileCard() {
       </span>
 
       <div className="flex items-center justify-center my-4 gap-4">
-        {SocialNetworkList.map((social, index) => (
+        {SOCIAL_LINKS.map((social, index) => (
           <Link
             key={index}
-            href={social.link}
+            href={social.href}
             target="_blank"
-            className="flex items-center justify-center w-10 h-10 bg-border rounded-full"
+            className="flex items-center justify-center w-10 h-10 bg-border rounded-full hover:scale-[1.02]"
           >
             <social.icon />
           </Link>
         ))}
       </div>
-      <ContactMe className="sm:w-full" />
+      <ContactMe className="w-full sm:text-[14px]" />
     </div>
   );
 }
