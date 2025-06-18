@@ -1,10 +1,17 @@
-import CommonButtons from "../SharedComponents/CommonButtons";
 import { Handshake } from "lucide-react";
 import Link from "next/link";
+import { ROUTES } from "@/constant/Routes";
+import dynamic from "next/dynamic";
 
-export default function Footer() {
+const CommonButtons = dynamic(
+  () => import("@/components/SharedComponents/CommonButtons")
+);
+
+export default function Footer({ className }: { className?: string }) {
   return (
-    <section className="w-full flex flex-col items-center rounded-t-[70px] bg-section-background px-4 pt-[80px] pb-[50px] bottom-0 relative sm:px-10">
+    <section
+      className={`w-full flex flex-col items-center rounded-t-[70px] bg-section-background px-4 pt-[80px] pb-[50px] bottom-0 relative sm:px-10 ${className}`}
+    >
       <div className="flex flex-col items-center max-w-[640px] gap-6">
         <div
           className="rounded-full flex justify-center items-center text-white size-20 animate-bounce [animation-delay:-.3s]"
@@ -18,25 +25,31 @@ export default function Footer() {
           <Handshake className="size-14" />
         </div>
         <div className="flex flex-col items-center gap-4">
-          <h1 className="text-4xl sm:text-[56px] text-center text-primary">
+          <h1 className="text-[28px] md:text-[36px] lg:text-[44px] text-center text-primary">
             Tell Me About Your Next Creative Project
           </h1>
           <span className="text-center text-primary flex">
-            Let's build exceptional web experiences together. Reach out to
+            Let&apos;s build exceptional web experiences together. Reach out to
             discuss your project requirements.
           </span>
         </div>
         <CommonButtons />
       </div>
-      <div className="flex items-center justify-between gap-4 mt-36 w-full lg:mt-32">
+      <div className="flex items-center justify-between gap-4 mt-36 w-full text-[12px] sm:text-[14px] lg:mt-32">
         <span>© 2025 Khushbu Asati. All rights reserved.</span>
         <div className="flex gap-4">
-          <Link href="/" target="_blank">
+          <Link
+            href={ROUTES.terms}
+            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
             Privacy Policy
           </Link>
-          <Link href="/" target="_blank">
+          <a
+            href="/sitemap.xml"
+            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+          >
             Sitemap
-          </Link>
+          </a>
         </div>
       </div>
     </section>

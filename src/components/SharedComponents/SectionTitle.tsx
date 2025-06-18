@@ -20,7 +20,7 @@ export default function SectionTitle({
         {Icon}
         <h2 className="text-sm">{name}</h2>
       </div>
-      <h1 className="text-[44px] max-w-[630px] text-center font-medium">{title}</h1>
+      <h1 className="text-[28px] md:text-[36px] lg:text-[44px] max-w-[630px] text-center font-medium">{title}</h1>
       <span className="text-[16px] text-center">{description}</span>
     </div>
   );

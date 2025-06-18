@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Navigation";
 import Navbar from "@/components/Navigation/Navbar";
 
 const geistSans = Geist({
@@ -29,9 +28,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-200`}
       >
-        <Header />
         <main className="relative scroll-smooth">
           {children}
+          {/* Uncomment the line below to include the Navbar */}
+          {/* <Navbar /> */}
+          {/* If you want to use the Navbar component, make sure it's imported correctly */}
           <Navbar />
         </main>
       </body>

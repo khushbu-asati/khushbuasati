@@ -1,0 +1,16 @@
+export const typewriterStack = [
+  "> REACT/TS",
+  "> MODERN FE",
+  "> BUILDER",
+  "> CLEAN CODE",
+  "> CODE WIZARD",
+  "> FRONTEND PRO",
+  "> NEXT.JS EXPERT",
+  "> JS NINJA",
+  "> WEB DEV",
+  "> SCALABLE",
+  "> PERF FOCUSED",
+  "> A11Y CHAMP",
+  "> TESTED",
+  "> FUTURE FE",
+];

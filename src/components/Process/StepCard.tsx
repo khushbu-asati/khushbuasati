@@ -1,6 +1,16 @@
-import DashedBorder from "../SharedComponents/DashedBorder";
+import dynamic from "next/dynamic";
+const DashedBorder = dynamic(
+  () => import("@/components/SharedComponents/DashedBorder")
+);
 
-export default function StepCard({ step }: { step: any }) {
+type CardProp = {
+  number: string;
+  title: string;
+  description: string;
+  stepLabel: string;
+};
+
+export default function StepCard({ step }: { step: CardProp }) {
   return (
     <div
       className="bg-background rounded-2xl h-fit flex flex-col gap-6 py-9 px-6 w-full"
