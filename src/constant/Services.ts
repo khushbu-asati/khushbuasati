@@ -39,7 +39,7 @@ export const SERVICE_LIST = [
     title: "API Integration & Data Handling",
     description:
       "Skillfully integrating with backend systems and managing data flow to power dynamic and efficient frontend experiences.",
-    image: "/assets/API2.png",
+    image: "/assets/API.png",
     // icon: Webhook,
   },
   {
